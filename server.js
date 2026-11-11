@@ -4,7 +4,6 @@ const nodemailer = require('nodemailer');
 const multer = require('multer');
 
 const app = express();
-// التعديل هنا: استخدام بورت السحابة التلقائي أو 3000 محلياً
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
@@ -24,10 +23,15 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+// إظهار صفحة المتجر عند فتح الرابط الرئيسي
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
+
 app.post('/api/orders', upload.single('receipt'), async (req, res) => {
     try {
         const { customerName, phone, address, quantity, notes, paymentMethod } = req.body;
-        const receiptFile = req.file; // صورة الإيصال المرفقة
+        const receiptFile = req.file;
 
         const newOrder = {
             id: orders.length + 1,
@@ -43,7 +47,6 @@ app.post('/api/orders', upload.single('receipt'), async (req, res) => {
 
         console.log("📦 طلب جديد وصل:", newOrder);
 
-        // تجهيز الإيميل مع الملاحظات
         let mailHtml = `
             <h2>🚨 طلب جديد في متجر Oleo</h2>
             <p><strong>اسم العميل:</strong> ${customerName}</p>
@@ -62,7 +65,6 @@ app.post('/api/orders', upload.single('receipt'), async (req, res) => {
             html: mailHtml
         };
 
-        // إذا مرفق صورة إيصال، نرفقها مع الإيميل
         if (receiptFile) {
             mailOptions.attachments = [
                 {
