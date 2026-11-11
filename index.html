@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLEO | Authentic Chinese Chili Oil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FDFBF7;
+            --brand-red: #800020;
+            --brand-red-hover: #5a0017;
+            --text-dark: #1A1A1A;
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            background: #fff;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--brand-red);
+            letter-spacing: 2px;
+        }
+
+        .header-chinese {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--brand-red);
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 950px;
+            width: 90%;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+        }
+
+        .product-preview {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #f9f6f0;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .product-img {
+            font-size: 90px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 10px 15px rgba(128,0,32,0.2));
+        }
+
+        .product-brand {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--brand-red);
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .product-subtitle {
+            font-size: 16px;
+            color: #555;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 20px;
+            color: var(--brand-red);
+            font-weight: bold;
+        }
+
+        .order-form h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+            background: #fff;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--brand-red);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        #bankDetailsBox {
+            background: #fdf8f8;
+            border: 1.5px dashed var(--brand-red);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        #bankDetailsBox h4 {
+            color: var(--brand-red);
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        #bankDetailsBox p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #444;
+            word-break: break-all;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--brand-red);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--brand-red-hover);
+        }
+
+        #resultMsg {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">OLEO.</div>
+        <div class="header-chinese">欢迎光临 Oleo 辣椒油专卖店</div>
+    </header>
+
+    <div class="container">
+        <!-- عرض المنتج -->
+        <div class="product-preview">
+            <div class="product-img">🌶️🥢</div>
+            <div class="product-brand">OLEO</div>
+            <div class="product-subtitle">Chinese Chili Oil</div>
+            <div class="product-price">20 ر.س</div>
+        </div>
+
+        <!-- نموذج الطلب -->
+        <div class="order-form">
+            <h3>إتمام الطلب السريع</h3>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="name" placeholder="أدخل اسمك الكامل" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم الجوال</label>
+                    <input type="tel" id="phone" placeholder="05xxxxxxxx" required>
+                </div>
+                <div class="form-group">
+                    <label>عنوان التوصيل</label>
+                    <input type="text" id="address" placeholder="المدينة، الحي، الشارع" required>
+                </div>
+                <div class="form-group">
+                    <label>الكمية</label>
+                    <input type="number" id="quantity" value="1" min="1" required>
+                </div>
+
+                <!-- خانة الملاحظات الجديدة -->
+                <div class="form-group">
+                    <label>ملاحظات إضافية (اختياري)</label>
+                    <textarea id="notes" placeholder=":.."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>طريقة الدفع</label>
+                    <select id="paymentMethod" onchange="toggleBankDetails()" required>
+                        <option value="cod">الدفع عند الاستلام</option>
+                        <option value="bank">تحويل بنكي (مصرف الراجحي)</option>
+                    </select>
+                </div>
+
+                <!-- صندوق بيانات البنك وإرفاق الإيصال -->
+                <div id="bankDetailsBox">
+                    <h4>بيانات الحساب البنكي (مصرف الراجحي):</h4>
+                    <p><strong>المستفيد:</strong> محمد زهير سالم السبهاني[cite: 2]</p>
+                    <p><strong>رقم الحساب:</strong> 077030010006083568923</p>
+                    <p><strong>الآيبان:</strong> SA2380000858608013568923</p>
+                    <p style="margin-top: 8px; color: #800020; font-weight: bold;">يرجى تحويل المبلغ ثم إرفاق صورة الإيصال أدناه:</p>
+                    
+                    <div class="form-group" style="margin-top: 10px; margin-bottom: 0;">
+                        <label>صورة إيصال التحويل</label>
+                        <input type="file" id="receiptFile" accept="image/*">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">تأكيد واطلب الآن 🛒</button>
+            </form>
+
+            <div id="resultMsg"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleBankDetails() {
+            const method = document.getElementById('paymentMethod').value;
+            const bankBox = document.getElementById('bankDetailsBox');
+            if (method === 'bank') {
+                bankBox.style.display = 'block';
+            } else {
+                bankBox.style.display = 'none';
+            }
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const msgBox = document.getElementById('resultMsg');
+            msgBox.style.display = 'block';
+            msgBox.style.background = '#eee';
+            msgBox.style.color = '#333';
+            msgBox.innerText = 'جاري إرسال الطلب وإيصال الدفع...';
+
+            const formData = new FormData();
+            formData.append('customerName', document.getElementById('name').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('address', document.getElementById('address').value);
+            formData.append('quantity', document.getElementById('quantity').value);
+            formData.append('notes', document.getElementById('notes').value); // إرسال الملاحظات
+            formData.append('paymentMethod', document.getElementById('paymentMethod').value);
+
+            const receiptInput = document.getElementById('receiptFile');
+            if (document.getElementById('paymentMethod').value === 'bank' && receiptInput.files[0]) {
+                formData.append('receipt', receiptInput.files[0]);
+            }
+
+            try {
+                const response = await fetch('http://localhost:3000/api/orders', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    msgBox.style.background = '#e8f5e9';
+                    msgBox.style.color = '#2e7d32';
+                    msgBox.innerText = '✅ تم إنشاء الطلب وإرسال تفاصيله بنجاح!';
+                    console.log('تفاصيل الطلب:', data);
+                } else {
+                    msgBox.style.background = '#ffebee';
+                    msgBox.style.color = '#c62828';
+                    msgBox.innerText = '❌ فشل إرسال الطلب، تأكد من السيرفر.';
+                }
+            } catch (error) {
+                console.error('خطأ الاتصال:', error);
+                msgBox.style.background = '#ffebee';
+                msgBox.style.color = '#c62828';
+                msgBox.innerText = '❌ لا يمكن الاتصال بالسيرفر المحلي!';
+            }
+        });
+    </script>
+
+</body>
+</html>
